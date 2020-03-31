@@ -64,3 +64,95 @@ void fill_array(int* arr, int size, int value){
         arr[i] = value;
     }
 }
+
+
+vector<string> inputData(){
+    string fileName = "input.txt";
+    //cout << "Enter file with labirynt" << endl;
+    //cin >> fileName;
+    fstream fin(fileName);
+    vector<string> data;
+    string str;
+    while(!fin.eof()){
+        getline(fin, str);
+        data.push_back(str);
+    }
+    return data;
+}
+
+map<int, vector<int> > parsData(vector<string> inputData, int& weight, int& height){
+    map<int, vector<int> > adjacencyList;
+    height = (inputData.size() -2 );
+    weight = (inputData[1].length()-2);
+    for(int i = 1; i < inputData.size() -1;i+=1){
+        for(int j = 1; j < inputData[i].size()-1; j+=1){
+            if(inputData[i][j] == ' '){
+                int top = weight*(i-1) + j -1;
+                if(inputData[i-1][j] == ' '){
+                    adjacencyList[top].push_back(weight*(i-2) + j - 1);
+                }
+                if(inputData[i][j-1] == ' '){
+                    adjacencyList[top].push_back(weight*(i-1) + j - 2);
+                }
+                if(inputData[i][j+1] == ' '){
+                    adjacencyList[top].push_back(weight*(i-1) + j);
+                }
+                if(inputData[i+1][j] == ' '){
+                    adjacencyList[top].push_back(weight*i + j - 1);
+                }
+            }
+        }
+    }
+    return adjacencyList;
+
+}
+
+vector<int> find_path(int* parent, int startTop, int endTop){
+    vector<int> path;
+    int curentTop = endTop;
+    while(curentTop != startTop){
+        curentTop = parent[curentTop];
+        path.push_back(curentTop);
+        
+    }
+    for(int i = 0; i < path.size()/2; i++){
+        int term = path[i];
+        path[i] = path[path.size() - i - 1];
+        path[path.size() - i - 1] = term;
+    }
+    return path;
+}
+
+void insert_path(vector<string> & inputData, vector<int> path, int weight, int endTop){
+    int k;
+    int i, j;
+    for(k = 0; k < path.size(); k++){
+        
+        
+        i = path[k]/weight;
+        j = path[k] - i*weight;
+        int symbol = (int)'1' + k;
+        if(symbol > 57){
+            symbol += 39;
+        }
+        inputData[i+1][j+1] = symbol;
+    }
+    i = endTop/weight;
+    j = endTop - i*weight;
+    int symbol = (int)'1' + k;
+        if(symbol > 57){
+            symbol += 39;
+        }
+        inputData[i+1][j+1] = symbol;
+    
+
+}
+
+void print_answer(vector<string> results){
+    for(int i = 0; i < results.size();i++){
+        for(int j = 0; j < results[i].length();j++){
+        cout << results[i][j] <<  " ";
+        }
+        cout << endl;
+    }
+}

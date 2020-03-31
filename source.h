@@ -39,4 +39,12 @@ public:
 void deikstra(map<int, vector<int> > adjacencyLinst,int*parent,  int  numberOfTops, int startTop, int endTop); 
 int* create_array(int size);
 void fill_array(int* arr, int size, int value);
+vector<string> inputData();
+map<int, vector<int> > parsData(vector<string> inputData, int& weight, int& height);
+vector<int> find_path(int* parent,  int startTop, int endTop);
+void insert_path(vector<string> & inputData, vector<int> path, int weight, int endTop);
+void print_answer(vector<string> results);
+
+
+
 #endif
