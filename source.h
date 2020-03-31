@@ -44,6 +44,7 @@ map<int, vector<int> > parsData(vector<string> inputData, int& weight, int& heig
 vector<int> find_path(int* parent,  int startTop, int endTop);
 void insert_path(vector<string> & inputData, vector<int> path, int weight, int endTop);
 void print_answer(vector<string> results);
+void incialize_start_and_top(int& startTop, int& endTop, int weight);
 
 
 

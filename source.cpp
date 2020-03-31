@@ -156,3 +156,13 @@ void print_answer(vector<string> results){
         cout << endl;
     }
 }
+
+void incialize_start_and_top(int& startTop, int& endTop, int weight){
+    int si, sj, ei, ej;// координати початку та кінця(з 0)
+    si = 6;
+    sj = 1;
+    ei = 1;
+    ej = 6;
+    startTop = weight*(si-1) + sj -1;
+    endTop = weight*(ei-1) + ej -1;
+}
