@@ -36,5 +36,7 @@ public:
 
 };
 
-
+void deikstra(map<int, vector<int> > adjacencyLinst,int*parent,  int  numberOfTops, int startTop, int endTop); 
+int* create_array(int size);
+void fill_array(int* arr, int size, int value);
 #endif
