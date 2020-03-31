@@ -67,9 +67,9 @@ void fill_array(int* arr, int size, int value){
 
 
 vector<string> inputData(){
-    string fileName = "input.txt";
-    //cout << "Enter file with labirynt" << endl;
-    //cin >> fileName;
+    string fileName ;
+    cout << "Enter file with labirynt" << endl;
+    cin >> fileName;
     fstream fin(fileName);
     vector<string> data;
     string str;
